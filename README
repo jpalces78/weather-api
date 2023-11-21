@@ -1,0 +1,90 @@
+Weather API 
+Welcome to the Weather API! This microservice provides information about a city's current weather.
+
+How to Programmatically REQUEST Data
+To request data from the microservice, make an HTTP GET request to the /weather endpoint. Include the city parameter in the query string with the name of the city you want information about.
+
+Example Call:
+
+curl https://weather-api-project-g3vk.onrender.com/weather?city=London
+Replace London with the name of the city you are interested in.
+
+How to Programmatically RECEIVE Data
+The microservice will respond with a JSON object containing information about the specified city. The response includes details such as temperature, humidity, and wind speed.
+
+Response Example:
+{
+  "coord": {
+    "lon": -0.1257,
+    "lat": 51.5085
+  },
+  "weather": [
+    {
+      "id": 804,
+      "main": "Clouds",
+      "description": "overcast clouds",
+      "icon": "04n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 282.02,
+    "feels_like": 279.71,
+    "temp_min": 281.01,
+    "temp_max": 283.02,
+    "pressure": 1027,
+    "humidity": 86
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 4.12,
+    "deg": 350
+  },
+  "clouds": {
+    "all": 100
+  },
+  "dt": 1700595958,
+  "sys": {
+    "type": 2,
+    "id": 2075535,
+    "country": "GB",
+    "sunrise": 1700551684,
+    "sunset": 1700582689
+  },
+  "timezone": 0,
+  "id": 2643743,
+  "name": "London",
+  "cod": 200
+}
+
+
+
+Please ensure your application handles the response appropriately and adjusts the parsing logic based on the structure of the returned JSON.
+
+
++---------------------+       +-------------------+       +------------------------+       +--------------+
+|      User           |       |    Express App   |       |        Axios           |       | OpenWeather  |
+|                     |       |                   |       |                        |       |   Map API    |
++---------------------+       +-------------------+       +------------------------+       +--------------+
+         |                            |                             |                               |
+         |                            |                             |                               |
+         |                            |                             |                               |
+         |---(HTTP GET /weather)---> |                             |                               |
+         |                            |                             |                               |
+         |                            |                             |                               |
+         |                            |                             |                               |
+         |                            |                             |                               |
+         |                            |                             |                               |
+         |                            |---(HTTP GET request)------>|                               |
+         |                            |---------------------------->|                               |
+         |                            |                             |                               |
+         |                            |                             |---(HTTP GET request)--------->|
+         |                            |                             |<-------------------------------|
+         |                            |                             |                               |
+         |                            |                             |<------(Weather data)-----------|
+         |                            |                             |                               |
+         |                            |<-----(Weather data)---------|                               |
+         |                            |                             |                               |
+         |<------(Weather data)--------|                             |                               |
+         |                            |                             |                               |
+                      
