@@ -1,0 +1,35 @@
+# Node.js
+node_modules/
+
+# Environment variables
+.env
+
+# User-specific files
+.npmrc
+.yarnrc
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Dependency directories
+bower_components/
+
+# Optional: OS generated files
+.DS_Store
+Thumbs.db
+
+# Optional: IDE-specific files
+*.sublime-workspace
+*.sublime-project
