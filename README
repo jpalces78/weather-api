@@ -6,7 +6,7 @@ To request data from the microservice, make an HTTP GET request to the /weather 
 
 Example Call:
 
-curl https://weather-api-project-g3vk.onrender.com/weather?city=London
+curl https://innate-ally-406402.uc.r.appspot.com/weather?city=London
 Replace London with the name of the city you are interested in.
 
 How to Programmatically RECEIVE Data
