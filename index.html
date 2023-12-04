@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather Information</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="title">
+                <h1>Weather App</h1>
+            </div>
+            <a href="index.html">Home</a>
+            |
+            <a href="about.html">About</a>
+            |
+            <a href="faq.html">FAQ</a>
+            |
+            <a href="contact.html">Contact</a>
+        </div>
+        <h1>Weather Search</h1>
+        <input type="text" id="cityInput" placeholder="Enter city name" />
+        <button onclick="searchWeather()">Search</button>
+        <div id="weatherInfo"></div>
+        <script>
+            function searchWeather() {
+                const city = document.getElementById("cityInput").value;
+                if (city.trim() !== "") {
+                    fetchWeather(city);
+                } else {
+                    document.getElementById("weatherInfo").innerHTML = "Please enter a city name.";
+                }
+            }
+
+            async function fetchWeather(city) {
+                try {
+                    const response = await fetch(
+                        `https://innate-ally-406402.uc.r.appspot.com/weather?city=${city}`
+                    );
+                    if (!response.ok) {
+                        throw new Error("City not found!");
+                    }
+                    const data = await response.json();
+                    displayWeather(data);
+                } catch (error) {
+                    document.getElementById("weatherInfo").innerHTML = error.message;
+                }
+            }
+
+            function displayWeather(data) {
+                const weatherInfoDiv = document.getElementById("weatherInfo");
+                weatherInfoDiv.innerHTML = `
+                <p>${data.name}</p>`;
+            }
+        </script>
+    </body>
+</html>

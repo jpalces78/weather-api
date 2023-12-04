@@ -1,10 +1,19 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
+const path = require('path'); 
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+// Enable CORS for all routes
+app.use(cors());
+
+// Serve the static files from the 'build' folder
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/weather', async (req, res) => {
   try {
@@ -25,6 +34,11 @@ app.get('/weather', async (req, res) => {
     console.error('Error fetching weather data:', error.message);
     res.status(500).json({ error: 'Internal server error' });
   }
+});
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(PORT, () => {
