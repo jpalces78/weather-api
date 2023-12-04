@@ -15,6 +15,10 @@ app.use(cors());
 // Serve the static files from the 'build' folder
 app.use(express.static(path.join(__dirname, 'build')));
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.get('/weather', async (req, res) => {
   try {
     const { city } = req.query;
